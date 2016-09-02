@@ -1,4 +1,5 @@
 # react-media-slider
+[![npm version](https://badge.fury.io/js/react-media-slider.svg)](https://badge.fury.io/js/react-media-slider)
 # WARNING: it's not ready for production yet
 
 ## Description
@@ -14,7 +15,7 @@ Install with [npm](https://npmjs.org/package/react-media-slider):
 
 ## Usage
 
-```jsx
+```js
 import { PlaybackSlider, VolumeSlider } from 'react-media-slider';
 
 … 
