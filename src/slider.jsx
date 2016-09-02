@@ -177,21 +177,21 @@ export default class Slider extends Component {
     const { style = {} } = this.props;
     const def = defaultStyles;
 
-    const mergedStyle = Object.keys(def).reduce((result, key) => {
+    const st = Object.keys(def).reduce((result, key) => {
       result[key] = capitalizeVendorPrefix({ ...def[key], ...style[key] });
       return result;
     }, {});
 
-    mergedStyle.body.background = mergedStyle.colors.background;
-    mergedStyle.bufferedFragment.background = mergedStyle.colors.buffered;
-    mergedStyle.progress.background = mergedStyle.colors.progress;
-    mergedStyle.handleHovered.background = mergedStyle.colors.controls;
-    mergedStyle.hintHovered.background = mergedStyle.colors.controls;
-    mergedStyle.hintArrow.borderTopColor = mergedStyle.colors.controls;
+    st.body.background = st.colors.background;
+    st.bufferedFragment.background = st.colors.buffered;
 
-    console.log(JSON.stringify(mergedStyle));
+    const color = st.colors.progress;
+    st.progress.background      = st.progress.background      || color;
+    st.handleHovered.background = st.handleHovered.background || color;
+    st.hintHovered.background   = st.hintHovered.background   || color;
+    st.hintArrow.borderTopColor = st.hintArrow.borderTopColor || color;
 
-    this.state.style = mergedStyle;
+    this.state.style = st;
   }
 }
 

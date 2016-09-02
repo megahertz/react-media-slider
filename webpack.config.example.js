@@ -32,18 +32,20 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.ProvidePlugin({
-      'React': 'react',
-    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
   ],
 
   resolve: {
     root: __dirname,
     alias: {
-      'react-media-slider': 'dist'
+      'react-media-slider': 'src'
     },
     extensions: [ '', '.js', '.jsx', '.css' ]
   },
-
-  devtool: 'inline-source-map',
 };

@@ -82,7 +82,8 @@ hintHovered {
   transform: translateX(-50%);
   color: #fff;
   border-radius: 2px;
-  font-size: 80%;
+  border: 1px solid #5796ce;
+  font-size: 70%;
   pointer-events: none;
   opacity: 1;
   transition: opacity .3s;
