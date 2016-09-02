@@ -182,11 +182,11 @@ export default class Slider extends Component {
       return result;
     }, {});
 
-    st.body.background = st.colors.background;
+    st.body.background             = st.colors.background;
     st.bufferedFragment.background = st.colors.buffered;
+    st.progress.background         = st.colors.progress;
 
-    const color = st.colors.progress;
-    st.progress.background      = st.progress.background      || color;
+    const color = st.colors.controls;
     st.handleHovered.background = st.handleHovered.background || color;
     st.hintHovered.background   = st.hintHovered.background   || color;
     st.hintArrow.borderTopColor = st.hintArrow.borderTopColor || color;
