@@ -4,6 +4,7 @@ import { Component, PropTypes } from 'react';
 import { PlaybackSlider, VolumeSlider } from 'react-media-slider';
 
 export default class Player extends Component {
+  //noinspection JSUnusedGlobalSymbols
   static propTypes = {
     src:       PropTypes.string.isRequired,
     title:     PropTypes.string.isRequired,
@@ -70,7 +71,7 @@ export default class Player extends Component {
           </div>
           <div className="controls">
             <PlaybackSlider ref="playbackSlider" />
-            <div className="lbl-vloume">🔊</div>
+            <div className="lbl-volume">🔊</div>
             <VolumeSlider ref="volumeSlider" />
           </div>
         </div>
