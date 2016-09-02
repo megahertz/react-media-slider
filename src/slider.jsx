@@ -36,6 +36,10 @@ export default class Slider extends Component {
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mouseup', this.onMouseUp);
 
+    if (this.props.media && !this.state.media) {
+      this.setMedia(this.props.media);
+    }
+
     if (this.props.disableHint || !isPointerEventsSupported()) {
       this.setState({ disableHint: true });
     }
