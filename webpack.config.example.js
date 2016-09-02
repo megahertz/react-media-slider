@@ -32,6 +32,9 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({
+      'React': 'react',
+    }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
