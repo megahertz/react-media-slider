@@ -1,0 +1,98 @@
+/*noinspection CssInvalidHtmlTagReference*/
+container {
+  position: relative;
+  height: 10px;
+  padding: 4px 0 10px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  height: 3px;
+  position: relative;
+  background: rgba(0, 0, 0, .05);
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+bufferedContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+bufferedFragment {
+  display: block;
+  position: absolute;
+  height: 100%;
+  background: #ccc
+}
+
+progress {
+  position: relative;
+  height: 100%;
+  background: rgba(0, 101, 225, .5)
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+handle {
+  opacity: 0
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+handleHovered {
+  display: block;
+  float: right;
+  width: 10px;
+  height: 10px;
+  margin: -3px -7px 0 0;
+  border-radius: 100%;
+  background: #5796ce;
+  opacity: 1;
+  transition: opacity .3s
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+hint {
+  position: absolute;
+  opacity: 0;
+  top: -200px;
+  display: none
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+hintHovered {
+  position: absolute;
+  left: 0;
+  top: -28px;
+  margin-left: 2px;
+  padding: .2em .3em;
+  transform: translateX(-50%);
+  color: #fff;
+  border-radius: 2px;
+  background: #5796ce;
+  font-size: 80%;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .4s
+}
+
+/*noinspection CssInvalidHtmlTagReference*/
+hintArrow {
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  width: 0;
+  height: 0;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: #5796ce;
+}

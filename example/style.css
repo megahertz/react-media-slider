@@ -1,0 +1,64 @@
+body {
+  color: #444;
+}
+
+.player {
+  display: inline-block;
+  margin: 1em;
+  padding: 1em 1em .8em;
+  box-shadow: 0 0 8px rgba(0,0,0,.6) }
+
+  .player img {
+    box-shadow: 0 0 3px rgba(0,0,0,.3)
+  }
+
+  .player .body {
+    display: inline-block;
+    width: 20em;
+    padding: .5em 0 0 1em;
+    vertical-align: top;
+  }
+
+  .player .info {
+    margin-bottom: 8px;
+    font-size: 120%; }
+    .player .info a {
+      color: #65a3e5;
+    }
+    .player .info .btn-play {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 25px;
+      height: 25px;
+      margin-right: .5em;
+      line-height: 25px;
+      text-align: center;
+      vertical-align: middle;
+      background: #65a3e5;
+      color: #fff;
+      border-radius: 100%;
+      font-family: "Segoe UI Symbol", Arial, sans-serif;
+      font-size: 11px;
+      cursor: pointer; }
+      .player .info .btn-play:before { content: "▶"; }
+      .player .info .btn-play.playing:before { content: "❚❚"; }
+
+  .player .controls {  }
+    .player .controls > div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .player .controls .lbl-vloume {
+      width: 2.3em;
+      margin: -15px .4em 0 0;
+      color: #aaa;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      text-align: right;
+    }
+
+  .player .controls > div:first-child {  width: calc(70% - 3em)  }
+  .player .controls > div:last-child{ width: 30% }
