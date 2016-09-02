@@ -1,3 +1,4 @@
+const fs      = require('fs');
 const webpack = require('webpack');
 
 module.exports = {
@@ -6,7 +7,10 @@ module.exports = {
   ],
 
   output: {
-    filename: './dist/index.js'
+    library: 'react-media-slider',
+    libraryTarget: 'umd',
+    path: './dist',
+    filename: 'index.js'
   },
 
   module: {
@@ -14,10 +18,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel',
-        query: {
-          presets: [ 'react', 'es2015', 'stage-0' ],
-          plugins: [ 'transform-class-properties' ]
-        },
+        query: JSON.parse(fs.readFileSync('.babelrc')),
         exclude: /node_modules/
       },
       {
@@ -30,18 +31,16 @@ module.exports = {
 
   externals: [
     {
-      "react": {
-        root: "React",
-        commonjs2: "react",
-        commonjs: "react",
-        amd: "react"
+      'react': {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
       }
     }
   ],
 
   resolve: {
-    extensions: [ '', '.json', '.js', '.jsx', '.css' ]
-  },
-
-  exclude: './node_modules'
+    extensions: [ '', '.js', '.jsx', '.css' ]
+  }
 };

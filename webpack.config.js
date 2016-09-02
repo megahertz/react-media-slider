@@ -1,3 +1,4 @@
+const fs      = require('fs');
 const webpack = require('webpack');
 
 const HOST = '0.0.0.0';
@@ -26,10 +27,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel',
-        query: {
-          presets: [ 'react', 'es2015', 'stage-0' ],
-          plugins: [ 'transform-class-properties' ]
-        },
+        query: JSON.parse(fs.readFileSync('.babelrc')),
         exclude: /node_modules/
       },
       {
@@ -41,7 +39,11 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [ '', '.json', '.js', '.jsx', '.css' ]
+    root: __dirname,
+    alias: {
+      'react-media-slider': 'dist'
+    },
+    extensions: [ '', '.js', '.jsx', '.css' ]
   },
 
   devtool: 'inline-source-map',

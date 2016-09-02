@@ -1,6 +1,6 @@
 {
   "name": "react-media-slider",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Slider for HTML5 audio and video",
   "main": "dist/index.js",
   "files": [
@@ -8,8 +8,8 @@
     "README.md"
   ],
   "scripts": {
-    "build-example": "env NODE_ENV=production ./node_modules/.bin/webpack -p --config ./webpack.example.config.js",
-    "build": "env NODE_ENV=production ./node_modules/.bin/webpack -p --config ./webpack.prod.config.js",
+    "build-example": "./node_modules/.bin/webpack -p --config ./webpack.config.example.js",
+    "build": "./node_modules/.bin/webpack --config ./webpack.config.prod.js",
     "lint": "./node_modules/.bin/eslint ./example/js/ ./src/*.js? ./example/*.js? --ignore-pattern example/js/main.js",
     "start": "./node_modules/.bin/webpack-dev-server --config ./webpack.config.js"
   },
@@ -26,6 +26,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
     "babel-polyfill": "^6.13.0",

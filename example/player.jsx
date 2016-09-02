@@ -1,6 +1,7 @@
 import { Component, PropTypes } from 'react';
 
-import { PlaybackSlider, VolumeSlider } from '../src';
+//noinspection NpmUsedModulesInstalled
+import { PlaybackSlider, VolumeSlider } from 'react-media-slider';
 
 export default class Player extends Component {
   static propTypes = {
