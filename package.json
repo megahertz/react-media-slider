@@ -1,6 +1,6 @@
 {
   "name": "react-media-slider",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "React Slider for HTML5 audio and video",
   "main": "dist/index.js",
   "files": [

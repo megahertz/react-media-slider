@@ -74,7 +74,8 @@ export default class Slider extends Component {
   }
 
   onMouseEnter(event) {
-    if (!event.buttons) {
+    const { media } = this.state;
+    if (!event.buttons && media) {
       this.setState({ isHovered: true });
     }
   }
@@ -84,7 +85,15 @@ export default class Slider extends Component {
   }
 
   onMouseDown(event) {
+    const { media } = this.state;
+    if (!media) {
+      return;
+    }
+
     event.preventDefault();
+    if (event.buttons !== 1) {
+      return;
+    }
     this.setState({ isSliding: true });
     this.onMouseMove(event, true);
   }
@@ -165,12 +174,24 @@ export default class Slider extends Component {
   }
 
   applyStyle() {
-    const style = this.props.style || {};
+    const { style = {} } = this.props;
     const def = defaultStyles;
-    this.state.style = Object.keys(def).reduce((result, key) => {
+
+    const mergedStyle = Object.keys(def).reduce((result, key) => {
       result[key] = capitalizeVendorPrefix({ ...def[key], ...style[key] });
       return result;
     }, {});
+
+    mergedStyle.body.background = mergedStyle.colors.background;
+    mergedStyle.bufferedFragment.background = mergedStyle.colors.buffered;
+    mergedStyle.progress.background = mergedStyle.colors.progress;
+    mergedStyle.handleHovered.background = mergedStyle.colors.controls;
+    mergedStyle.hintHovered.background = mergedStyle.colors.controls;
+    mergedStyle.hintArrow.borderTopColor = mergedStyle.colors.controls;
+
+    console.log(JSON.stringify(mergedStyle));
+
+    this.state.style = mergedStyle;
   }
 }
 

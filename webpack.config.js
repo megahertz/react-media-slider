@@ -41,7 +41,7 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
-      'react-media-slider': 'dist'
+      'react-media-slider': 'src'
     },
     extensions: [ '', '.js', '.jsx', '.css' ]
   },
