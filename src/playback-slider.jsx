@@ -7,6 +7,7 @@ export default class PlaybackSlider extends Slider {
     this.onTimeUpdate = this.onTimeUpdate.bind(this);
     this.onEnded      = this.onEnded.bind(this);
     this.onProgress   = this.onProgress.bind(this);
+    this.onLoadStart  = this.onLoadStart.bind(this);
   }
 
   setValue(value, applyToMedia = false) {
@@ -27,6 +28,7 @@ export default class PlaybackSlider extends Slider {
     media.addEventListener('ended', this.onEnded, false);
     media.addEventListener('progress', this.onProgress, false);
     media.addEventListener('timeupdate', this.onTimeUpdate, false);
+    media.addEventListener('loadstart', this.onLoadStart, false);
   }
 
   reset() {
@@ -42,6 +44,7 @@ export default class PlaybackSlider extends Slider {
     media.removeEventListener('ended', this.onEnded, false);
     media.removeEventListener('progress', this.onProgress, false);
     media.removeEventListener('timeupdate', this.onTimeUpdate, false);
+    media.removeEventListener('loadstart', this.onLoadStart, false);
   }
 
   onTimeUpdate(event) {
@@ -75,6 +78,11 @@ export default class PlaybackSlider extends Slider {
     }
 
     this.setState({ progress });
+  }
+
+  onLoadStart() {
+    this.setValue(0);
+    this.setState({ progress: [] });
   }
 
   formatValue(value) {

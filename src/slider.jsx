@@ -28,7 +28,6 @@ export default class Slider extends Component {
     }
 
     if (props.media && props.media !== this.props.media) {
-      this.reset();
       this.setMedia(props.media);
     }
   }
