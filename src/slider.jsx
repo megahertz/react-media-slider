@@ -23,8 +23,11 @@ export default class Slider extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.applyStyle();
-    if (props.media) {
+    if (props.style && props.style !== this.props.style) {
+      this.applyStyle();
+    }
+
+    if (props.media && props.media !== this.props.media) {
       this.reset();
       this.setMedia(props.media);
     }
