@@ -6,7 +6,9 @@
 
 ## Description
 
-React Slider for HTML5 audio and video
+React Slider for HTML5 audio and video. Using this
+
+![Screenshot](https://raw.githubusercontent.com/megahertz/react-media-slider/master/example/screenshot.png)
 
 
 ## Installation
