@@ -4,7 +4,7 @@ import { Component, PropTypes } from 'react';
 import { PlaybackSlider, VolumeSlider } from 'react-media-slider';
 
 export default class Player extends Component {
-  //noinspection JSUnusedGlobalSymbols
+  // noinspection JSUnusedGlobalSymbols
   static propTypes = {
     src:       PropTypes.string.isRequired,
     title:     PropTypes.string.isRequired,
@@ -60,11 +60,13 @@ export default class Player extends Component {
           <source src={src}/>
         </audio>
 
-        <img src={cover} width="60" height="60" alt="Cover"/>
+        <img src={cover} width="60" height="60" alt="Cover" />
         <div className="body">
           <div className="info">
-            <a className={ 'btn-play ' + (!paused ? 'playing' : '') }
-               onClick={::this.onPlayClick} />
+            <a
+              className={ 'btn-play ' + (!paused ? 'playing' : '') }
+              onClick={::this.onPlayClick}
+            />
             <a href={authorUrl}>{author}</a>
             &nbsp;–&nbsp;
             <a href={titleUrl}>{title}</a>

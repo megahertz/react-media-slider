@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-//noinspection JSUnresolvedVariable
+// noinspection JSUnresolvedVariable
 import defaultStyles from './style.css';
 
 export default class Slider extends Component {
@@ -106,7 +106,7 @@ export default class Slider extends Component {
     if (!isSliding) {
       return;
     }
-    //noinspection JSUndefinedPropertyAssignment
+    // noinspection JSUndefinedPropertyAssignment
     this.state.isSliding = false;
   }
 
@@ -150,7 +150,7 @@ export default class Slider extends Component {
     st.hintHovered.background   = st.hintHovered.background   || color;
     st.hintArrow.borderTopColor = st.hintArrow.borderTopColor || color;
 
-    //noinspection JSUndefinedPropertyAssignment
+    // noinspection JSUndefinedPropertyAssignment
     this.state.style = st;
   }
 
@@ -168,8 +168,9 @@ export default class Slider extends Component {
     };
 
     return (
-      <div style={hintStyle}>{this.formatValue(cursorValue)}
-        <div style={style.hintArrow}></div>
+      <div style={hintStyle}>
+        {this.formatValue(cursorValue)}
+        <div style={style.hintArrow} />
       </div>
     );
   }
@@ -188,10 +189,12 @@ export default class Slider extends Component {
     };
 
     return (
-      <div style={style.container}
-           onMouseDown={::this.onMouseDown}
-           onMouseEnter={::this.onMouseEnter}
-           onMouseLeave={::this.onMouseLeave}>
+      <div
+        style={style.container}
+        onMouseDown={::this.onMouseDown}
+        onMouseEnter={::this.onMouseEnter}
+        onMouseLeave={::this.onMouseLeave}
+      >
         {this.renderHint()}
         <div style={style.body} ref="sliderBody">
           {this.renderInternal()}

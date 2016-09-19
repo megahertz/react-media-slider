@@ -3,7 +3,7 @@ import Slider from './slider';
 export default class PlaybackSlider extends Slider {
   constructor() {
     super();
-    //noinspection JSUndefinedPropertyAssignment
+    // noinspection JSUndefinedPropertyAssignment
     this.state.progress = [];
     this.onTimeUpdate = this.onTimeUpdate.bind(this);
     this.onEnded      = this.onEnded.bind(this);
@@ -61,7 +61,7 @@ export default class PlaybackSlider extends Slider {
     const { media } = this.state;
 
     super.reset();
-    //noinspection JSUndefinedPropertyAssignment
+    // noinspection JSUndefinedPropertyAssignment
     this.state.progress = [];
 
     if (!media) {
@@ -121,10 +121,13 @@ export default class PlaybackSlider extends Slider {
       <div style={style.bufferedContainer}>
         {progress.map((buffer, i) => {
           return (
-            <span key={i} style={{
-              ...style.bufferedFragment,
-              marginLeft: buffer.left,
-              width: buffer.width }}
+            <span
+              key={i}
+              style={{
+                ...style.bufferedFragment,
+                marginLeft: buffer.left,
+                width: buffer.width
+              }}
             />
           );
         })}
