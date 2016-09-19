@@ -11,42 +11,12 @@ export default class PlaybackSlider extends Slider {
     this.onLoadStart  = this.onLoadStart.bind(this);
   }
 
-  setValue(value, applyToMedia = false) {
-    const { media } = this.state;
-    if (!media) {
+  onMouseUp() {
+    if (!this.state.isSliding) {
       return;
     }
-    super.setValue(value);
-    if (applyToMedia) {
-      media.currentTime = media.duration * value;
-    }
-  }
-
-  setMedia(media) {
-    this.setValue(0, false);
-    super.setMedia(media);
-
-    media.addEventListener('ended', this.onEnded, false);
-    media.addEventListener('progress', this.onProgress, false);
-    media.addEventListener('timeupdate', this.onTimeUpdate, false);
-    media.addEventListener('loadstart', this.onLoadStart, false);
-  }
-
-  reset() {
-    const { media } = this.state;
-
-    super.reset();
-    //noinspection JSUndefinedPropertyAssignment
-    this.state.progress = [];
-
-    if (!media) {
-      return;
-    }
-
-    media.removeEventListener('ended', this.onEnded, false);
-    media.removeEventListener('progress', this.onProgress, false);
-    media.removeEventListener('timeupdate', this.onTimeUpdate, false);
-    media.removeEventListener('loadstart', this.onLoadStart, false);
+    super.onMouseUp();
+    this.setValue(this.state.value, true);
   }
 
   onTimeUpdate(event) {
@@ -87,6 +57,44 @@ export default class PlaybackSlider extends Slider {
     this.setState({ progress: [] });
   }
 
+  reset() {
+    const { media } = this.state;
+
+    super.reset();
+    //noinspection JSUndefinedPropertyAssignment
+    this.state.progress = [];
+
+    if (!media) {
+      return;
+    }
+
+    media.removeEventListener('ended', this.onEnded, false);
+    media.removeEventListener('progress', this.onProgress, false);
+    media.removeEventListener('timeupdate', this.onTimeUpdate, false);
+    media.removeEventListener('loadstart', this.onLoadStart, false);
+  }
+
+  setMedia(media) {
+    this.setValue(0, false);
+    super.setMedia(media);
+
+    media.addEventListener('ended', this.onEnded, false);
+    media.addEventListener('progress', this.onProgress, false);
+    media.addEventListener('timeupdate', this.onTimeUpdate, false);
+    media.addEventListener('loadstart', this.onLoadStart, false);
+  }
+
+  setValue(value, applyToMedia = false) {
+    const { media } = this.state;
+    if (!media) {
+      return;
+    }
+    super.setValue(value);
+    if (applyToMedia) {
+      media.currentTime = media.duration * value;
+    }
+  }
+
   formatValue(value) {
     const { media } = this.state;
     if (!media) {
@@ -106,14 +114,6 @@ export default class PlaybackSlider extends Slider {
       .replace('T', '');
   }
 
-  onMouseUp() {
-    if (!this.state.isSliding) {
-      return;
-    }
-    super.onMouseUp();
-    this.setValue(this.state.value, true);
-  }
-
   renderInternal() {
     const { progress, style } = this.state;
 
@@ -124,7 +124,8 @@ export default class PlaybackSlider extends Slider {
             <span key={i} style={{
               ...style.bufferedFragment,
               marginLeft: buffer.left,
-              width: buffer.width }} />
+              width: buffer.width }}
+            />
           );
         })}
       </div>
