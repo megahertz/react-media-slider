@@ -1,9 +1,9 @@
 import Slider from './slider';
-import PlaybackSlider from './playback-slider';
+import ProgressSlider from './progress-slider';
 import VolumeSlider from './volume-slider';
 
 export {
   Slider,
-  PlaybackSlider,
+  ProgressSlider,
   VolumeSlider
 };

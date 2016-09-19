@@ -6,7 +6,11 @@
 
 ## Description
 
-React Slider for HTML5 audio and video. Using this
+React Slider for HTML5 audio and video. This library contains two
+components: ProgressSlider and VolumeSlider. To create your own player
+you only need to include these two components and call `media.play()`
+of HTMLAudioElement
+
 
 ![Screenshot](https://raw.githubusercontent.com/megahertz/react-media-slider/master/example/screenshot.png)
 
@@ -20,7 +24,7 @@ Install with [npm](https://npmjs.org/package/react-media-slider):
 ## Usage
 
 ```js
-import { PlaybackSlider, VolumeSlider } from 'react-media-slider';
+import { ProgressSlider, VolumeSlider } from 'react-media-slider';
 
 … 
 
@@ -29,7 +33,7 @@ render() {
   const { audio } = this.state;
   return (
     … 
-    <PlaybackSlider media={audio} />
+    <ProgressSlider media={audio} />
     … 
     <VolumeSlider media={audio} />
     … 

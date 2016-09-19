@@ -1,7 +1,7 @@
 import { Component, PropTypes } from 'react';
 
 // noinspection NpmUsedModulesInstalled
-import { PlaybackSlider, VolumeSlider } from 'react-media-slider';
+import { ProgressSlider, VolumeSlider } from 'react-media-slider';
 
 export default class Player extends Component {
   // noinspection JSUnusedGlobalSymbols
@@ -23,8 +23,8 @@ export default class Player extends Component {
   }
 
   componentDidMount() {
-    const { audio, playbackSlider, volumeSlider } = this.refs;
-    playbackSlider.setMedia(audio);
+    const { audio, progressSlider, volumeSlider } = this.refs;
+    progressSlider.setMedia(audio);
     volumeSlider.setMedia(audio);
 
     audio.addEventListener('ended', this.onEnded, false);
@@ -72,7 +72,7 @@ export default class Player extends Component {
             <a href={titleUrl}>{title}</a>
           </div>
           <div className="controls">
-            <PlaybackSlider ref="playbackSlider" />
+            <ProgressSlider ref="progressSlider" />
             <div className="lbl-volume">🔊</div>
             <VolumeSlider ref="volumeSlider" />
           </div>

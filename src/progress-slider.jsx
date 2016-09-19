@@ -1,6 +1,6 @@
 import Slider from './slider';
 
-export default class PlaybackSlider extends Slider {
+export default class ProgressSlider extends Slider {
   constructor() {
     super();
     // noinspection JSUndefinedPropertyAssignment
