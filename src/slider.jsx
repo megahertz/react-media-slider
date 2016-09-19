@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+//noinspection JSUnresolvedVariable
 import defaultStyles from './style.css';
 
 export default class Slider extends Component {
@@ -23,26 +24,30 @@ export default class Slider extends Component {
   }
 
   componentWillMount() {
+    const { media, disableHint } = this.props;
+
     this.applyStyle();
 
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mouseup', this.onMouseUp);
 
-    if (this.props.media && !this.state.media) {
-      this.setMedia(this.props.media);
+    if (media && !this.state.media) {
+      this.setMedia(media);
     }
 
-    if (this.props.disableHint || !isPointerEventsSupported()) {
+    if (disableHint || !isPointerEventsSupported()) {
       this.setState({ disableHint: true });
     }
   }
 
   componentWillReceiveProps(props) {
-    if (props.style && props.style !== this.props.style) {
+    const { style, media } = this.props;
+
+    if (props.style && props.style !== style) {
       this.applyStyle();
     }
 
-    if (props.media && props.media !== this.props.media) {
+    if (props.media && props.media !== media) {
       this.setMedia(props.media);
     }
   }
@@ -101,6 +106,7 @@ export default class Slider extends Component {
     if (!isSliding) {
       return;
     }
+    //noinspection JSUndefinedPropertyAssignment
     this.state.isSliding = false;
   }
 
@@ -144,6 +150,7 @@ export default class Slider extends Component {
     st.hintHovered.background   = st.hintHovered.background   || color;
     st.hintArrow.borderTopColor = st.hintArrow.borderTopColor || color;
 
+    //noinspection JSUndefinedPropertyAssignment
     this.state.style = st;
   }
 

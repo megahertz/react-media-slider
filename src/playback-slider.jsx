@@ -3,6 +3,7 @@ import Slider from './slider';
 export default class PlaybackSlider extends Slider {
   constructor() {
     super();
+    //noinspection JSUndefinedPropertyAssignment
     this.state.progress = [];
     this.onTimeUpdate = this.onTimeUpdate.bind(this);
     this.onEnded      = this.onEnded.bind(this);
@@ -35,6 +36,7 @@ export default class PlaybackSlider extends Slider {
     const { media } = this.state;
 
     super.reset();
+    //noinspection JSUndefinedPropertyAssignment
     this.state.progress = [];
 
     if (!media) {
