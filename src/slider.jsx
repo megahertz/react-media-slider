@@ -22,16 +22,6 @@ export default class Slider extends Component {
     this.onMouseUp   = this.onMouseUp.bind(this);
   }
 
-  componentWillReceiveProps(props) {
-    if (props.style && props.style !== this.props.style) {
-      this.applyStyle();
-    }
-
-    if (props.media && props.media !== this.props.media) {
-      this.setMedia(props.media);
-    }
-  }
-
   componentWillMount() {
     this.applyStyle();
 
@@ -47,32 +37,20 @@ export default class Slider extends Component {
     }
   }
 
+  componentWillReceiveProps(props) {
+    if (props.style && props.style !== this.props.style) {
+      this.applyStyle();
+    }
+
+    if (props.media && props.media !== this.props.media) {
+      this.setMedia(props.media);
+    }
+  }
+
   componentWillUnmount() {
     this.reset();
     document.removeEventListener('mousemove', this.onMouseMove);
     document.removeEventListener('mouseup', this.onMouseUp);
-  }
-
-  reset() {
-    this.setState({
-      isHovered: false,
-      isSliding: false,
-      value: 0,
-      media: null
-    });
-  }
-
-  setMedia(media) {
-    this.reset();
-    this.setState({ media });
-  }
-
-  setValue(value) {
-    this.setState({ value });
-  }
-
-  formatValue(value) {
-    return Math.round(value * 100) / 100;
   }
 
   onMouseEnter(event) {
@@ -126,29 +104,47 @@ export default class Slider extends Component {
     this.state.isSliding = false;
   }
 
-  render() {
-    const { isHovered, isSliding, value, style } = this.state;
-    const showHandle = isHovered || isSliding;
+  reset() {
+    this.setState({
+      isHovered: false,
+      isSliding: false,
+      value: 0,
+      media: null
+    });
+  }
 
-    const progressStyle = {
-      ...style.progress,
-      width: Math.floor(value * 100) + '%'
-    };
+  setMedia(media) {
+    this.reset();
+    this.setState({ media });
+  }
 
-    return (
-      <div style={style.container}
-           onMouseDown={::this.onMouseDown}
-           onMouseEnter={::this.onMouseEnter}
-           onMouseLeave={::this.onMouseLeave}>
-        {this.renderHint()}
-        <div style={style.body} ref="sliderBody">
-          {this.renderInternal()}
-          <div style={progressStyle}>
-            <a style={ showHandle ? style.handleHovered : style.handle } />
-          </div>
-        </div>
-      </div>
-    );
+  setValue(value) {
+    this.setState({ value });
+  }
+
+  formatValue(value) {
+    return Math.round(value * 100) / 100;
+  }
+
+  applyStyle() {
+    const { style = {} } = this.props;
+    const def = defaultStyles;
+
+    const st = Object.keys(def).reduce((result, key) => {
+      result[key] = capitalizeVendorPrefix({ ...def[key], ...style[key] });
+      return result;
+    }, {});
+
+    st.body.background             = st.colors.background;
+    st.bufferedFragment.background = st.colors.buffered;
+    st.progress.background         = st.colors.progress;
+
+    const color = st.colors.controls;
+    st.handleHovered.background = st.handleHovered.background || color;
+    st.hintHovered.background   = st.hintHovered.background   || color;
+    st.hintArrow.borderTopColor = st.hintArrow.borderTopColor || color;
+
+    this.state.style = st;
   }
 
   renderHint() {
@@ -175,25 +171,29 @@ export default class Slider extends Component {
     return null;
   }
 
-  applyStyle() {
-    const { style = {} } = this.props;
-    const def = defaultStyles;
+  render() {
+    const { isHovered, isSliding, value, style } = this.state;
+    const showHandle = isHovered || isSliding;
 
-    const st = Object.keys(def).reduce((result, key) => {
-      result[key] = capitalizeVendorPrefix({ ...def[key], ...style[key] });
-      return result;
-    }, {});
+    const progressStyle = {
+      ...style.progress,
+      width: Math.floor(value * 100) + '%'
+    };
 
-    st.body.background             = st.colors.background;
-    st.bufferedFragment.background = st.colors.buffered;
-    st.progress.background         = st.colors.progress;
-
-    const color = st.colors.controls;
-    st.handleHovered.background = st.handleHovered.background || color;
-    st.hintHovered.background   = st.hintHovered.background   || color;
-    st.hintArrow.borderTopColor = st.hintArrow.borderTopColor || color;
-
-    this.state.style = st;
+    return (
+      <div style={style.container}
+           onMouseDown={::this.onMouseDown}
+           onMouseEnter={::this.onMouseEnter}
+           onMouseLeave={::this.onMouseLeave}>
+        {this.renderHint()}
+        <div style={style.body} ref="sliderBody">
+          {this.renderInternal()}
+          <div style={progressStyle}>
+            <a style={ showHandle ? style.handleHovered : style.handle } />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
