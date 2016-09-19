@@ -155,16 +155,11 @@ export default class Slider extends Component {
   }
 
   renderHint() {
-    const {
-      isHovered,
-      isSliding,
-      style,
-      cursorValue,
-      disableHint,
-      media
-    } = this.state;
+    const { isHovered, isSliding, style, cursorValue, disableHint } = this.state;
 
-    if (disableHint || !media || !media.duration) {
+    const text = this.formatValue(cursorValue);
+
+    if (disableHint || !text) {
       return null;
     }
 
@@ -177,7 +172,7 @@ export default class Slider extends Component {
 
     return (
       <div style={hintStyle}>
-        {this.formatValue(cursorValue)}
+        {text}
         <div style={style.hintArrow} />
       </div>
     );
