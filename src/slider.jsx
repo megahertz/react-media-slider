@@ -155,8 +155,16 @@ export default class Slider extends Component {
   }
 
   renderHint() {
-    const { isHovered, isSliding, style, cursorValue, disableHint } = this.state;
-    if (disableHint) {
+    const {
+      isHovered,
+      isSliding,
+      style,
+      cursorValue,
+      disableHint,
+      media
+    } = this.state;
+
+    if (disableHint || !media || !media.duration) {
       return null;
     }
 
